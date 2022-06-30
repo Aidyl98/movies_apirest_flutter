@@ -6,7 +6,7 @@ Api that provide the information: https://www.themoviedb.org/.
 
 This app requires internet conextion.
 
-## User Manual
+## App Info
 
 The application consists on a menu that has the following options:
 1. Show the movies that are on the theater billboard.
