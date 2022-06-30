@@ -134,8 +134,8 @@ class _MoviesBodyState extends State<MoviesBody> {
                 }
               }),
             itemCount: _billboardMoviesList.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: size.width > 200 ? 6 : 2,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
               crossAxisSpacing: 5,
               mainAxisSpacing: 5,
               childAspectRatio: 2 / 3.2,
