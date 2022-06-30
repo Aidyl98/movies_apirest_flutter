@@ -9,7 +9,31 @@ class MoviesServiceImplementation extends MoviesService {
   Future getBillBoardMovies(int page) async {
     // Get object info and pagination.
     return await _dio.get(
-      ApiConstants.billBoardEndPoint + ApiConstants.pageEndpoint + '$page',
+      ApiConstants.buildBillBoardEndpoint(page),
+    );
+  }
+
+  @override
+  Future getChildMovies(int page) async {
+    // Get object info and pagination.
+    return await _dio.get(
+      ApiConstants.buildBoysPopularityEndpoint(page),
+    );
+  }
+
+  @override
+  Future getPopularMovies(int page) async {
+    // Get object info and pagination.
+    return await _dio.get(
+      ApiConstants.buildPopularityEndpoint(page),
+    );
+  }
+
+  @override
+  Future searchMovies(int page, String movieSearch) async {
+    // Get object info and pagination.
+    return await _dio.get(
+      ApiConstants.buildSearchEndPoint(page, movieSearch),
     );
   }
 }

@@ -4,12 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_apirest_flutter/bloc/movies_bloc.dart';
 import 'package:movies_apirest_flutter/data/model/movies_model.dart';
+import 'package:movies_apirest_flutter/utils/fetch_type_enum.dart';
 import 'package:movies_apirest_flutter/view/screens/movies_detail_screen.dart';
 import 'package:movies_apirest_flutter/view/widgets/movies_poster.dart';
 import 'package:movies_apirest_flutter/view/widgets/widget_utils.dart';
 
 class MoviesBody extends StatefulWidget {
-  const MoviesBody({Key? key}) : super(key: key);
+  final FetchType fetchType;
+
+  const MoviesBody({
+    Key? key,
+    required this.fetchType,
+  }) : super(key: key);
 
   @override
   _MoviesBodyState createState() => _MoviesBodyState();
@@ -54,7 +60,7 @@ class _MoviesBodyState extends State<MoviesBody> {
               ),
             );
             // Get Data Error.
-          } else if (billboardState is BMoviesErrorState) {
+          } else if (billboardState is MoviesErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: WidgetUtils.buildInfoText(
@@ -80,7 +86,7 @@ class _MoviesBodyState extends State<MoviesBody> {
             _billboardMoviesList.addAll(billboardState.moviesList);
             ScaffoldMessenger.of(context).clearSnackBars();
             // Error View.
-          } else if (billboardState is BMoviesErrorState &&
+          } else if (billboardState is MoviesErrorState &&
               _billboardMoviesList.isEmpty) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -94,7 +100,7 @@ class _MoviesBodyState extends State<MoviesBody> {
                   tooltip: "Try to fetch the data.",
                   onPressed: () {
                     BlocProvider.of<MoviesBloc>(context)
-                        .add(const BillboardFetchEvent());
+                        .fetch(widget.fetchType);
                   },
                   icon: const Icon(
                     Icons.refresh,
@@ -117,7 +123,7 @@ class _MoviesBodyState extends State<MoviesBody> {
                 if (_scrollController.offset ==
                         _scrollController.position.maxScrollExtent &&
                     !BlocProvider.of<MoviesBloc>(context).isFetching) {
-                  BlocProvider.of<MoviesBloc>(context).fetch();
+                  BlocProvider.of<MoviesBloc>(context).fetch(widget.fetchType);
                 }
               }),
             itemCount: _billboardMoviesList.length,
@@ -178,7 +184,7 @@ class _MoviesBodyState extends State<MoviesBody> {
 
   // Shows the Detail Screen of the selected character.
   _buildOpen(int index) {
-    return MoviesDetailScreen(billBoardModel: _billboardMoviesList[index]);
+    return MoviesDetailScreen(moviesModel: _billboardMoviesList[index]);
   }
 
   @override

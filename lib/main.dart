@@ -6,6 +6,7 @@ import 'package:movies_apirest_flutter/data/repository/movies_repository.dart';
 import 'package:movies_apirest_flutter/data/repository/movies_repository_impl.dart';
 import 'package:movies_apirest_flutter/data/services/movies_service.dart';
 import 'package:movies_apirest_flutter/data/services/movies_service_impl.dart';
+import 'package:movies_apirest_flutter/utils/fetch_type_enum.dart';
 import 'package:movies_apirest_flutter/view/screens/movies_screen.dart';
 
 void main() {
@@ -26,15 +27,26 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
-      title: 'Movies Wiki',
-      debugShowCheckedModeBanner: false,
-      theme: _buildTheme(),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const MoviesScreen(),
-      },
-    );
+    return GetMaterialApp(
+        title: 'Movies Wiki',
+        debugShowCheckedModeBanner: false,
+        theme: _buildTheme(),
+        initialRoute: '/initial',
+        getPages: [
+          GetPage(
+            name: '/initial',
+            page: () => const MoviesScreen(
+              fetchType: FetchType.BillBoard,
+            ),
+          ),
+          GetPage(
+            name: '/movies',
+            page: () => MoviesScreen(
+              fetchType: Get.arguments['fetchType'],
+              key: const Key("Initial"),
+            ),
+          ),
+        ]);
   }
 
   ThemeData _buildTheme() {
