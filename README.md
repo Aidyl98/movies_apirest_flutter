@@ -1,16 +1,28 @@
-# movies_apirest_flutter
+# Movies App
 
-A new Flutter project.
+This is an app build in Flutter that loads a list of movies (acording to different criteria) and his info, and display it.
 
-## Getting Started
+Api that provide the information: https://www.themoviedb.org/.
 
-This project is a starting point for a Flutter application.
+This app requires internet conextion.
 
-A few resources to get you started if this is your first Flutter project:
+## App Info
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The application consists on a menu that has the following options:
+1. Show the movies that are on the theater billboard.
+2. Show popular movies.
+3. Show popular movies among the little ones.
+4. Have a screen to search for movies.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/menu.jpg" alt="bottom_center" width="200"/> <img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/lista.jpg" alt="bottom_right" width="200"/>
+<img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/detalles.jpg" alt="bottom_right" width="200"/>
+
+<img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/buscar.jpg" alt="bottom_center" width="200"/> <img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/buscar_teclado.jpg" alt="bottom_right" width="200"/>
+
+## Install apk
+
+In the main folder of the project there is another folder with the name "apk" that contains the installable file of this application. Install this apk to run the application.
+## Contents
+- [API  Rest with Retrofit](https://pub.dev/packages/retrofit)
+- [State Management with BloC](https://pub.dev/packages/bloc)
+- [Load and Cache Image with CachedNetworkImage](https://pub.dev/packages/cached_network_image)
