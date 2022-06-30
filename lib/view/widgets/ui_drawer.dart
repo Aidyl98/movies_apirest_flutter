@@ -13,98 +13,92 @@ class UIDrawer extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     double iconsSize = size.width / 13;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: const BoxDecoration(
-            color: Colors.transparent,
-            image: DecorationImage(
-              image: AssetImage('assets/images/drawer.jpg'),
-              fit: BoxFit.cover,
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.transparent,
+          image: DecorationImage(
+            image: AssetImage('assets/images/drawer.jpg'),
+            fit: BoxFit.cover,
           ),
-          child: SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const BackButton(color: Colors.white),
-                const SizedBox(height: 60),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: AutoSizeText(
-                    'Menu:',
-                    style: Theme.of(context).textTheme.headline6?.copyWith(
-                          fontSize: size.width / 4,
-                        ),
-                    maxLines: 1,
-                  ),
+        ),
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const BackButton(color: Colors.white),
+              const SizedBox(height: 60),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: AutoSizeText(
+                  'Menu:',
+                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                        fontSize: size.width / 4,
+                      ),
+                  maxLines: 1,
                 ),
-                _buildListTile(
-                  context: context,
-                  size: size,
-                  title: "BillBoard of Movies.",
-                  leading: Icon(
-                    FontAwesomeIcons.list,
-                    size: iconsSize,
-                  ),
-                  tapHandler: () =>
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/movies',
-                          arguments: {
-                            'fetchType': FetchType.BillBoard,
-                          },
-                          (Route<dynamic> route) => false),
+              ),
+              _buildListTile(
+                context: context,
+                size: size,
+                title: "BillBoard of Movies.",
+                leading: Icon(
+                  FontAwesomeIcons.list,
+                  size: iconsSize,
                 ),
-                _buildListTile(
-                  context: context,
-                  size: size,
-                  title: "Most Popular Movies.",
-                  leading: Icon(
-                    FontAwesomeIcons.star,
-                    size: iconsSize,
-                  ),
-                  tapHandler: () =>
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/movies',
-                          arguments: {
-                            'fetchType': FetchType.Popular,
-                          },
-                          (Route<dynamic> route) => false),
+                tapHandler: () => Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/movies',
+                    arguments: {
+                      'fetchType': FetchType.BillBoard,
+                    },
+                    (Route<dynamic> route) => false),
+              ),
+              _buildListTile(
+                context: context,
+                size: size,
+                title: "Most Popular Movies.",
+                leading: Icon(
+                  FontAwesomeIcons.star,
+                  size: iconsSize,
                 ),
-                _buildListTile(
-                  context: context,
-                  size: size,
-                  title: "Popular Child Movies",
-                  leading: Icon(
-                    FontAwesomeIcons.child,
-                    size: iconsSize,
-                  ),
-                  tapHandler: () =>
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/movies',
-                          arguments: {
-                            'fetchType': FetchType.ChildPopular,
-                          },
-                          (Route<dynamic> route) => false),
+                tapHandler: () => Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/movies',
+                    arguments: {
+                      'fetchType': FetchType.Popular,
+                    },
+                    (Route<dynamic> route) => false),
+              ),
+              _buildListTile(
+                context: context,
+                size: size,
+                title: "Popular Child Movies",
+                leading: Icon(
+                  FontAwesomeIcons.child,
+                  size: iconsSize,
                 ),
-                _buildListTile(
-                  context: context,
-                  size: size,
-                  title: "Search Movie.",
-                  leading: Icon(
-                    FontAwesomeIcons.magnifyingGlass,
-                    size: iconsSize,
-                  ),
-                  tapHandler: () =>
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/movies',
-                          arguments: {
-                            'fetchType': FetchType.Search,
-                          },
-                          (Route<dynamic> route) => false),
+                tapHandler: () => Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/movies',
+                    arguments: {
+                      'fetchType': FetchType.ChildPopular,
+                    },
+                    (Route<dynamic> route) => false),
+              ),
+              _buildListTile(
+                context: context,
+                size: size,
+                title: "Search Movie.",
+                leading: Icon(
+                  FontAwesomeIcons.magnifyingGlass,
+                  size: iconsSize,
                 ),
-              ],
-            ),
+                tapHandler: () => Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/movies',
+                    arguments: {
+                      'fetchType': FetchType.Search,
+                    },
+                    (Route<dynamic> route) => false),
+              ),
+            ],
           ),
         ),
       ),
