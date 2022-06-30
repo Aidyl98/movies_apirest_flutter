@@ -11,10 +11,12 @@ import 'package:movies_apirest_flutter/view/widgets/widget_utils.dart';
 
 class MoviesBody extends StatefulWidget {
   final FetchType fetchType;
+  final String searchText;
 
   const MoviesBody({
     Key? key,
     required this.fetchType,
+    this.searchText = "a",
   }) : super(key: key);
 
   @override
@@ -99,8 +101,10 @@ class _MoviesBodyState extends State<MoviesBody> {
                   splashColor: Theme.of(context).colorScheme.background,
                   tooltip: "Try to fetch the data.",
                   onPressed: () {
-                    BlocProvider.of<MoviesBloc>(context)
-                        .fetch(widget.fetchType);
+                    BlocProvider.of<MoviesBloc>(context).fetch(
+                      widget.fetchType,
+                      textSearch: widget.searchText,
+                    );
                   },
                   icon: const Icon(
                     Icons.refresh,
@@ -123,7 +127,10 @@ class _MoviesBodyState extends State<MoviesBody> {
                 if (_scrollController.offset ==
                         _scrollController.position.maxScrollExtent &&
                     !BlocProvider.of<MoviesBloc>(context).isFetching) {
-                  BlocProvider.of<MoviesBloc>(context).fetch(widget.fetchType);
+                  BlocProvider.of<MoviesBloc>(context).fetch(
+                    widget.fetchType,
+                    textSearch: widget.searchText,
+                  );
                 }
               }),
             itemCount: _billboardMoviesList.length,
