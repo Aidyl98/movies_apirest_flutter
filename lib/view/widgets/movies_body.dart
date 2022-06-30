@@ -1,8 +1,9 @@
 import 'package:animations/animations.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_apirest_flutter/bloc/billboard_bloc.dart';
-import 'package:movies_apirest_flutter/data/model/billboard_model.dart';
+import 'package:movies_apirest_flutter/bloc/movies_bloc.dart';
+import 'package:movies_apirest_flutter/data/model/movies_model.dart';
 import 'package:movies_apirest_flutter/view/screens/movies_detail_screen.dart';
 import 'package:movies_apirest_flutter/view/widgets/movies_poster.dart';
 import 'package:movies_apirest_flutter/view/widgets/widget_utils.dart';
@@ -15,17 +16,17 @@ class MoviesBody extends StatefulWidget {
 }
 
 class _MoviesBodyState extends State<MoviesBody> {
-  final List<BillBoardModel> _billboardMoviesList = [];
+  final List<MoviesModel> _billboardMoviesList = [];
   final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Center(
-      child: BlocConsumer<BillboardBloc, BillboardState>(
+      child: BlocConsumer<MoviesBloc, MoviesState>(
         listener: (context, billboardState) {
           // Loading Data.
-          if (billboardState is BillboardLoadingState) {
+          if (billboardState is MoviesLoadingState) {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -39,8 +40,8 @@ class _MoviesBodyState extends State<MoviesBody> {
               ),
             );
             // Get Data, end of the list.
-          } else if (billboardState is BillboardSuccessState &&
-              billboardState.billBoardMoviesList.isEmpty) {
+          } else if (billboardState is MoviesSuccessState &&
+              billboardState.moviesList.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: WidgetUtils.buildInfoText(
@@ -53,7 +54,7 @@ class _MoviesBodyState extends State<MoviesBody> {
               ),
             );
             // Get Data Error.
-          } else if (billboardState is BillboardErrorState) {
+          } else if (billboardState is BMoviesErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: WidgetUtils.buildInfoText(
@@ -70,16 +71,16 @@ class _MoviesBodyState extends State<MoviesBody> {
         },
         builder: (context, billboardState) {
           // Loading Data
-          if (billboardState is BillboardInitial ||
-              billboardState is BillboardLoadingState &&
+          if (billboardState is MoviesInitial ||
+              billboardState is MoviesLoadingState &&
                   _billboardMoviesList.isEmpty) {
             return WidgetUtils.buildCircularProgressIndicator(context);
             // Add the fetched data to the list.
-          } else if (billboardState is BillboardSuccessState) {
-            _billboardMoviesList.addAll(billboardState.billBoardMoviesList);
+          } else if (billboardState is MoviesSuccessState) {
+            _billboardMoviesList.addAll(billboardState.moviesList);
             ScaffoldMessenger.of(context).clearSnackBars();
             // Error View.
-          } else if (billboardState is BillboardErrorState &&
+          } else if (billboardState is BMoviesErrorState &&
               _billboardMoviesList.isEmpty) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -92,7 +93,7 @@ class _MoviesBodyState extends State<MoviesBody> {
                   splashColor: Theme.of(context).colorScheme.background,
                   tooltip: "Try to fetch the data.",
                   onPressed: () {
-                    BlocProvider.of<BillboardBloc>(context)
+                    BlocProvider.of<MoviesBloc>(context)
                         .add(const BillboardFetchEvent());
                   },
                   icon: const Icon(
@@ -115,8 +116,8 @@ class _MoviesBodyState extends State<MoviesBody> {
               ..addListener(() {
                 if (_scrollController.offset ==
                         _scrollController.position.maxScrollExtent &&
-                    !BlocProvider.of<BillboardBloc>(context).isFetching) {
-                  BlocProvider.of<BillboardBloc>(context).fetch();
+                    !BlocProvider.of<MoviesBloc>(context).isFetching) {
+                  BlocProvider.of<MoviesBloc>(context).fetch();
                 }
               }),
             itemCount: _billboardMoviesList.length,
@@ -124,6 +125,7 @@ class _MoviesBodyState extends State<MoviesBody> {
               crossAxisCount: 2,
               crossAxisSpacing: 5,
               mainAxisSpacing: 5,
+              childAspectRatio: 2 / 3.2,
             ),
             itemBuilder: (context, index) => _buildOpenContainer(
               index,
@@ -154,15 +156,21 @@ class _MoviesBodyState extends State<MoviesBody> {
     return Card(
       child: GridTile(
         // Movie Poster.
-        child: MoviesPoster(
+        header: MoviesPoster(
           moviePoster: _billboardMoviesList[index].posterPath,
         ),
+        child: const SizedBox(height: 1),
         // Movie Title.
-        footer: WidgetUtils.buildInfoText(
-          text: _billboardMoviesList[index].title,
-          context: context,
-          size: size,
-          maxLines: 1,
+        footer: Container(
+          color: Theme.of(context).colorScheme.background,
+          child: AutoSizeText(
+            _billboardMoviesList[index].title,
+            style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                  fontSize: size.width / 17,
+                ),
+            textAlign: TextAlign.center,
+            maxLines: 2,
+          ),
         ),
       ),
     );

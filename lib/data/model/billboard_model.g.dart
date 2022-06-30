@@ -13,7 +13,6 @@ BillBoardModel _$BillBoardModelFromJson(Map<String, dynamic> json) =>
       genreIds:
           (json['genre_ids'] as List<dynamic>).map((e) => e as int).toList(),
       id: json['id'] as int,
-      mediaType: json['media_type'] as String,
       title: json['title'] as String,
       originalLanguage: json['original_language'] as String,
       originalTitle: json['original_title'] as String,
@@ -32,7 +31,6 @@ Map<String, dynamic> _$BillBoardModelToJson(BillBoardModel instance) =>
       'backdrop_path': instance.backdropPath,
       'genre_ids': instance.genreIds,
       'id': instance.id,
-      'media_type': instance.mediaType,
       'title': instance.title,
       'original_language': instance.originalLanguage,
       'original_title': instance.originalTitle,

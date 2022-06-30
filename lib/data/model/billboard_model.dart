@@ -15,9 +15,6 @@ class BillBoardModel {
   @JsonKey(name: "id")
   int id;
 
-  @JsonKey(name: "media_type")
-  String mediaType;
-
   @JsonKey(name: "title")
   String title;
 
@@ -53,7 +50,6 @@ class BillBoardModel {
     required this.backdropPath,
     required this.genreIds,
     required this.id,
-    required this.mediaType,
     required this.title,
     required this.originalLanguage,
     required this.originalTitle,
@@ -68,6 +64,6 @@ class BillBoardModel {
 
   factory BillBoardModel.fromJson(Map<String, dynamic> json) =>
       _$BillBoardModelFromJson(json);
-      
+
   Map<String, dynamic> toJson() => _$BillBoardModelToJson(this);
 }

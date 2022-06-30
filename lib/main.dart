@@ -6,7 +6,7 @@ import 'package:movies_apirest_flutter/data/repository/movies_repository.dart';
 import 'package:movies_apirest_flutter/data/repository/movies_repository_impl.dart';
 import 'package:movies_apirest_flutter/data/services/movies_service.dart';
 import 'package:movies_apirest_flutter/data/services/movies_service_impl.dart';
-import 'package:movies_apirest_flutter/view/screens/billboard_screen.dart';
+import 'package:movies_apirest_flutter/view/screens/movies_screen.dart';
 
 void main() {
   ////////////////// Dependencies injection ////////////////////////////////////
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: _buildTheme(),
       initialRoute: '/',
       routes: {
-        '/': (context) => const BillboardScreen(),
+        '/': (context) => const MoviesScreen(),
       },
     );
   }
