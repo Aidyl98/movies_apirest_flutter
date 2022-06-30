@@ -15,6 +15,7 @@ The application consists on a menu that has the following options:
 4. Have a screen to search for movies.
 
 <img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/menu.jpg" alt="bottom_center" width="200"/> <img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/lista.jpg" alt="bottom_right" width="200"/>
+<img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/detalles.jpg" alt="bottom_right" width="200"/>
 
 <img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/buscar.jpg" alt="bottom_center" width="200"/> <img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/buscar_teclado.jpg" alt="bottom_right" width="200"/>
 
