@@ -21,7 +21,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     moviesRepository = Get.find<MoviesRepository>();
   }
 
-  void fetch(FetchType fetchType, {String textSearch = ""}) {
+  void fetch(FetchType fetchType, {String textSearch = "a"}) {
     isFetching = true;
     switch (fetchType) {
       case FetchType.BillBoard:

@@ -46,6 +46,14 @@ class MyApp extends StatelessWidget {
               key: const Key("Initial"),
             ),
           ),
+          GetPage(
+            name: '/search',
+            page: () => MoviesScreen(
+              fetchType: Get.arguments['fetchType'],
+              searchText: Get.arguments['search'],
+              key: const Key("Initial"),
+            ),
+          ),
         ]);
   }
 
