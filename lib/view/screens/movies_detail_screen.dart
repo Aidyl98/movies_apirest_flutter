@@ -6,11 +6,11 @@ import 'package:movies_apirest_flutter/view/widgets/movies_poster.dart';
 import 'package:movies_apirest_flutter/view/widgets/widget_utils.dart';
 
 class MoviesDetailScreen extends StatelessWidget {
-  final MoviesModel billBoardModel;
+  final MoviesModel moviesModel;
 
   const MoviesDetailScreen({
     Key? key,
-    required this.billBoardModel,
+    required this.moviesModel,
   }) : super(key: key);
 
   @override
@@ -33,7 +33,7 @@ class MoviesDetailScreen extends StatelessWidget {
               WidgetUtils.buildIndicatorText('Popularity:', context, size),
               WidgetUtils.buildInfoText(
                 text:
-                    (billBoardModel.voteAverage * 10).toStringAsFixed(0) + "%",
+                    (moviesModel.voteAverage * 10).toStringAsFixed(0) + "%",
                 context: context,
                 size: size,
                 maxLines: 1,
@@ -46,7 +46,7 @@ class MoviesDetailScreen extends StatelessWidget {
               SizedBox(height: sizeBoxHeight),
               WidgetUtils.buildIndicatorText('Count of Votes:', context, size),
               WidgetUtils.buildInfoText(
-                text: billBoardModel.voteCount.toString(),
+                text: moviesModel.voteCount.toString(),
                 context: context,
                 size: size,
                 maxLines: 1,
@@ -70,7 +70,7 @@ class MoviesDetailScreen extends StatelessWidget {
                   width: size.width,
                   child: MoviesPoster(
                     moviePoster:
-                        ApiConstants.imageEndPoint + billBoardModel.posterPath,
+                        ApiConstants.imageEndPoint + moviesModel.posterPath,
                     boxFit: BoxFit.fill,
                   ),
                 ),
@@ -81,7 +81,7 @@ class MoviesDetailScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: AutoSizeText(
-                    billBoardModel.title,
+                    moviesModel.title,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline6?.copyWith(
                           fontSize: size.width / 11,
@@ -114,7 +114,7 @@ class MoviesDetailScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: WidgetUtils.buildInfoText(
-                    text: billBoardModel.overview,
+                    text: moviesModel.overview,
                     context: context,
                     size: size,
                     textAlign: TextAlign.justify,
