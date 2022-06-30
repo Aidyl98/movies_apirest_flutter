@@ -1,6 +1,6 @@
 # Movies App
 
-This is an app build in Flutter that loads a list of movies(acording to different criteria) and his info, and display it.
+This is an app build in Flutter that loads a list of movies (acording to different criteria) and his info, and display it.
 
 Api that provide the information: https://www.themoviedb.org/.
 
@@ -18,6 +18,9 @@ The application consists on a menu that has the following options:
 
 <img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/buscar.jpg" alt="bottom_center" width="200"/> <img src="https://github.com/Aidyl98/movies_apirest_flutter/blob/develop/screenshots/buscar_teclado.jpg" alt="bottom_right" width="200"/>
 
+## Install apk
+
+In the main folder of the project there is another folder with the name "apk" that contains the installable file of this application. Install this apk to run the application.
 ## Contents
 - [API  Rest with Retrofit](https://pub.dev/packages/retrofit)
 - [State Management with BloC](https://pub.dev/packages/bloc)
