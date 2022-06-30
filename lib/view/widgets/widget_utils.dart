@@ -40,4 +40,33 @@ class WidgetUtils {
       strokeWidth: 8,
     );
   }
+
+  static Widget circularButtonWithIcon({
+    required Function()? onPressed,
+    String heroTag = '<FloatingActionButton: circularButtonWithIcon>',
+    Color splashColor = Colors.blueGrey,
+    Color backgroundColor = Colors.lightBlue,
+    Widget child = const Icon(Icons.settings_backup_restore_rounded),
+    double size = 56,
+  }) {
+    return SizedBox(
+      height: size,
+      width: size,
+      child: FloatingActionButton(
+        heroTag: heroTag,
+        // The color of the circle.
+        backgroundColor: backgroundColor,
+        // The elevation of the button.
+        elevation: 20,
+        // Highlight elevation is the elevation of the button when tapped.
+        highlightElevation: 50,
+        // The color of the splash.
+        splashColor: splashColor,
+        // What is supouse to happend when is pressed.
+        onPressed: onPressed,
+        // The icon with the animation that the button is going to have.
+        child: child,
+      ),
+    );
+  }
 }
