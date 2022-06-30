@@ -23,10 +23,10 @@ class MoviesSuccessState extends MoviesState {
   });
 }
 
-class BMoviesErrorState extends MoviesState {
+class MoviesErrorState extends MoviesState {
   final String error;
 
-  const BMoviesErrorState({
+  const MoviesErrorState({
     required this.error,
   });
 }

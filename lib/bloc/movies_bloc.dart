@@ -35,7 +35,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
         page++;
       } on Exception catch (exc) {
         isFetching = false;
-        yield BMoviesErrorState(
+        yield MoviesErrorState(
           error: exc.toString().replaceAll("Exception: ", ""),
         );
       }

@@ -54,7 +54,7 @@ class _MoviesBodyState extends State<MoviesBody> {
               ),
             );
             // Get Data Error.
-          } else if (billboardState is BMoviesErrorState) {
+          } else if (billboardState is MoviesErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: WidgetUtils.buildInfoText(
@@ -80,7 +80,7 @@ class _MoviesBodyState extends State<MoviesBody> {
             _billboardMoviesList.addAll(billboardState.moviesList);
             ScaffoldMessenger.of(context).clearSnackBars();
             // Error View.
-          } else if (billboardState is BMoviesErrorState &&
+          } else if (billboardState is MoviesErrorState &&
               _billboardMoviesList.isEmpty) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
