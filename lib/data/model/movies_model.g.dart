@@ -7,21 +7,22 @@ part of 'movies_model.dart';
 // **************************************************************************
 
 MoviesModel _$MoviesModelFromJson(Map<String, dynamic> json) => MoviesModel(
-      adult: json['adult'] as bool,
-      backdropPath: json['backdrop_path'] as String,
-      genreIds:
-          (json['genre_ids'] as List<dynamic>).map((e) => e as int).toList(),
-      id: json['id'] as int,
-      title: json['title'] as String,
-      originalLanguage: json['original_language'] as String,
-      originalTitle: json['original_title'] as String,
-      overview: json['overview'] as String,
-      popularity: (json['popularity'] as num).toDouble(),
-      posterPath: json['poster_path'] as String,
-      releaseDate: DateTime.parse(json['release_date'] as String),
-      video: json['video'] as bool,
-      voteAverage: (json['vote_average'] as num).toDouble(),
-      voteCount: json['vote_count'] as int,
+      adult: json['adult'] as bool? ?? true,
+      backdropPath: json['backdrop_path'] as String? ?? '',
+      genreIds: (json['genre_ids'] as List<dynamic>?)
+              ?.map((e) => e as int)
+              .toList() ??
+          [],
+      id: json['id'] as int? ?? 0,
+      title: json['title'] as String? ?? '',
+      originalLanguage: json['original_language'] as String? ?? '',
+      originalTitle: json['original_title'] as String? ?? '',
+      overview: json['overview'] as String? ?? '',
+      popularity: (json['popularity'] as num?)?.toDouble() ?? 0,
+      posterPath: json['poster_path'] as String? ?? '',
+      video: json['video'] as bool? ?? false,
+      voteAverage: (json['vote_average'] as num?)?.toDouble() ?? 0,
+      voteCount: json['vote_count'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$MoviesModelToJson(MoviesModel instance) =>
@@ -36,7 +37,6 @@ Map<String, dynamic> _$MoviesModelToJson(MoviesModel instance) =>
       'overview': instance.overview,
       'popularity': instance.popularity,
       'poster_path': instance.posterPath,
-      'release_date': instance.releaseDate.toIso8601String(),
       'video': instance.video,
       'vote_average': instance.voteAverage,
       'vote_count': instance.voteCount,

@@ -3,46 +3,43 @@ part 'movies_model.g.dart';
 
 @JsonSerializable()
 class MoviesModel {
-  @JsonKey(name: "adult")
+  @JsonKey(name: "adult", defaultValue: true)
   bool adult;
 
-  @JsonKey(name: "backdrop_path")
+  @JsonKey(name: "backdrop_path", defaultValue: "")
   String backdropPath;
 
-  @JsonKey(name: "genre_ids")
+  @JsonKey(name: "genre_ids", defaultValue: [])
   List<int> genreIds;
 
-  @JsonKey(name: "id")
+  @JsonKey(name: "id", defaultValue: 0)
   int id;
 
-  @JsonKey(name: "title")
+  @JsonKey(name: "title", defaultValue: "")
   String title;
 
-  @JsonKey(name: "original_language")
+  @JsonKey(name: "original_language", defaultValue: "")
   String originalLanguage;
 
-  @JsonKey(name: "original_title")
+  @JsonKey(name: "original_title", defaultValue: "")
   String originalTitle;
 
-  @JsonKey(name: "overview")
+  @JsonKey(name: "overview", defaultValue: "")
   String overview;
 
-  @JsonKey(name: "popularity")
+  @JsonKey(name: "popularity", defaultValue: 0)
   double popularity;
 
-  @JsonKey(name: "poster_path")
+  @JsonKey(name: "poster_path", defaultValue: "")
   String posterPath;
 
-  @JsonKey(name: "release_date")
-  DateTime releaseDate;
-
-  @JsonKey(name: "video")
+  @JsonKey(name: "video", defaultValue: false)
   bool video;
 
-  @JsonKey(name: "vote_average")
+  @JsonKey(name: "vote_average", defaultValue: 0)
   double voteAverage;
 
-  @JsonKey(name: "vote_count")
+  @JsonKey(name: "vote_count", defaultValue: 0)
   int voteCount;
 
   MoviesModel({
@@ -56,7 +53,6 @@ class MoviesModel {
     required this.overview,
     required this.popularity,
     required this.posterPath,
-    required this.releaseDate,
     required this.video,
     required this.voteAverage,
     required this.voteCount,
